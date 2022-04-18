@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ pageTitle }}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/stylesheet.css') }}">
+</head>
+<body>
+
+    <h1>Vertical Tank Maintenance</h1>
+
+    <p>
+        <a href='/'> Home </a>
+        <a href='/about'> About </a>
+        <a href='/estimate'> Estimate </a>
+    </p>
+    <hr/>
+    
+        {% block body %}
+
+        {% endblock %}
+        <footer>
+            &copy; VTM 2020
+        </footer>
+
+</body>
+</html>
+
