@@ -12,45 +12,29 @@ def index():
 def about():
     return render_template('about.html', pageTitle='About Page')
 
-def calculate_top_area(Radius)
+def calculate_top_area(radius):
     return 3.14*(radius**2)
 
-def calculate_side_area(Radius,Height)
+def calculate_side_area(radius,height):
     return 2*(3.14*(radius*height))
 
-def calculate_total_area_in(total_area_in)
-    return side_area + top_area
 
-def calculate_total_area_ft(total_sqft)
-    return total_area/144
-
-def calculate_material_cost(total_material_cost)
-    return total_sqft * material_cost
-
-def calculate_labor_cost(total_labor_cost)
-    return labor_cost * total_sqft
-
-def calculate_total_cost(cost)
-    return total_material_cost +total_labor_cost
-
-@app.route('/estimate', methods=['GET', 'POST'])
+@app.route('/estimate', methods=['GET','POST'])
 def estimate():
     if request.method == 'POST':
         form = request.form
-        c_radius = float(form['radius'])
+        radius = float(form['radius'])
         height = float(form['height'])
-        top_area=3.14*(radius**2)
-        side_area=2*(3.14*(radius*height))
-        total_area = top_area + side_area
-        total_sqft = total_area/144
-        material_cost = 25 
-        total_material_cost = total_sqft*material_cost
-        labor_cost = 15
-        total_labor_cost = labor_cost*total_sqft
-        cost = total_material_cost + total_labor_cost
-        cost=str(cost)
-        return cost
-    return render_template('estimate.html', pageTitle="Estimate")
-  
+        pi = 3.14
+        top_area = pi * radius**2
+        side_area = 2*(pi*(radius*height))
+        total_area = topArea+sidesArea
+        total_sqft = totalArea / 144
+        total_material_cost = 25 * totalSqFt
+        total_labor_cost = 15 * totalSqFt
+        cost = "${:,.2f}".format(round(total_material_cost + total_labor_cost, 2))
+        return (render_template('estimate.html', estimate = cost))
+    return render_template('estimate.html', pageTitle='Estimate')
+
 if __name__ == '__main__':
     app.run(debug=True)

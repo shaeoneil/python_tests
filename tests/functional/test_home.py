@@ -9,8 +9,8 @@ def test_index_route(app,client):
     with app.test_client() as test_client:
         res = test_client.get('/')
         assert res.status_code == 200
-        assert b"Verticle Tank Maintenance" in res.data 
-        assert b"VTM Page Welcome!" in res.data
+        assert b"Vertical Tank Maintenance" in res.data 
+        assert b"Welcome!" in res.data
     
 
 
@@ -25,8 +25,8 @@ def test_about_route(app, client):
     with app.test_client() as test_client:
         res = test_client.get('/about')
         assert res.status_code == 200
-        assert b"Verticle Tank Maintenance" in res.data
-        assert b"About Verticle Tank Maintenance" in res.data
+        assert b"Vertical Tank Maintenance" in res.data
+        assert b"About Vertical Tank Maintenance" in res.data
 
 
 def test_estimate_route(app, client):
@@ -40,7 +40,7 @@ def test_estimate_route(app, client):
         res = test_client.get('/estimate')
         assert res.status_code == 200
         assert b"Estimate" in res.data
-        assert b"Recieve Estimate:" in res.data
+        assert b"Calculate Estimate" in res.data
 
 def test_estimate_functionality(app, client):
     """ 
@@ -49,11 +49,7 @@ def test_estimate_functionality(app, client):
     THEN check that the correct estimate is returned to the user
     """
     print("-- /estimate 'estimate' POST test")
-    # Functional test - it puts POST data in the age route and looks for the correct value to be returned
-    # individual functions to perform the calculations are tested in the Unit tests
     with app.test_client() as test_client:
-        # pass in the data use Chrome Developer Tools -> Network -> Click on page -> Payload
-        # passing future age value as 'x' because I look for the key(future_age), not the value in app.py if/then stmt
         calc_estimate = {"radius":"180", "height":"360", "estimate":"x"} 
         res = test_client.post('/estimate', data=calc_estimate)
         assert res.status_code == 200 
