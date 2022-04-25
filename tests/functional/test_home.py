@@ -1,3 +1,5 @@
+import math
+
 def test_index_route(app,client):
     """
     GIVEN a flask application is configured for testing 
@@ -10,7 +12,7 @@ def test_index_route(app,client):
         res = test_client.get('/')
         assert res.status_code == 200
         assert b"Vertical Tank Maintenance" in res.data 
-        assert b"Welcome!" in res.data
+        assert b"VTM Page Welcome!" in res.data
     
 
 
@@ -40,17 +42,19 @@ def test_estimate_route(app, client):
         res = test_client.get('/estimate')
         assert res.status_code == 200
         assert b"Estimate" in res.data
-        assert b"Calculate Estimate" in res.data
+        assert b"Recieve Estimate" in res.data
 
 def test_estimate_functionality(app, client):
     """ 
     GIVEN a Flask application configured for testing
-    WHEN the 'calculate' button is selected (POST)
+    WHEN the calculate button is selected (POST)
     THEN check that the correct estimate is returned to the user
     """
     print("-- /estimate 'estimate' POST test")
     with app.test_client() as test_client:
-        calc_estimate = {"radius":"180", "height":"360", "estimate":"x"} 
-        res = test_client.post('/estimate', data=calc_estimate)
+        estimate_calc = {"radius":"180", "height":"360", "cost":"x"} 
+        res = test_client.post('/estimate', data=estimate_calc)
         assert res.status_code == 200 
-        assert b"$141,300.00" in res.data 
+        assert b"$141,300" in res.data 
+
+  

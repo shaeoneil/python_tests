@@ -5,7 +5,7 @@
 <p>Calculate your estimated cost.</p>
 <hr />
 <h3> Recieve Estimate: </h3>
-<form action="/estimate" method="POST">
+<form action="/estimate" method='POST'>
         <label for="radius">Radius:</label>
         <input type="number" id="radius" name="radius" autofocus required />
         <br />
@@ -15,8 +15,6 @@
         <input type="submit" id="submit" value="Calculate Estimate" />
         <input type="reset" value="Clear" />
 </form>
-<br>
-<h3>Estimate</h3>
-<p>{{cost}}</p>
-
-{% endblock %}
+<br/>
+<br />
+{% if cost %} {{cost}} {% endif %} {% endblock %}

@@ -1,3 +1,4 @@
+from sqlite3 import complete_statement
 from flask import Flask
 from flask import render_template, redirect, request, url_for
 
@@ -25,15 +26,16 @@ def estimate():
         form = request.form
         radius = float(form['radius'])
         height = float(form['height'])
-        pi = 3.14
-        top_area = pi * radius**2
-        side_area = 2*(pi*(radius*height))
-        total_area = topArea+sidesArea
-        total_sqft = totalArea / 144
-        total_material_cost = 25 * totalSqFt
-        total_labor_cost = 15 * totalSqFt
-        cost = "${:,.2f}".format(round(total_material_cost + total_labor_cost, 2))
-        return (render_template('estimate.html', estimate = cost))
+        top_area=3.14*(radius**2)
+        side_area=2*(3.14*(radius*height))
+        total_area = top_area + side_area
+        total_sqft = total_area/144
+        material_cost = 25 
+        total_material_cost = total_sqft*material_cost
+        labor_cost = 15
+        total_labor_cost = labor_cost*total_sqft
+        cost = total_material_cost + total_labor_cost
+        return str("${:,.2f}".format(cost))
     return render_template('estimate.html', pageTitle='Estimate')
 
 if __name__ == '__main__':

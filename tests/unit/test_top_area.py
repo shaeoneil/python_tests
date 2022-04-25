@@ -6,7 +6,7 @@ def  test_calculate_top_area():
     WHEN that radius is passed to this function 
     THEN the user's top area is accurately created
     """
-    assert app.calculate_top_area(180)== 101,736
+    assert app.calculate_top_area(180)== 101736
 
 def  test_calculate_side_area(): 
     """
@@ -14,4 +14,4 @@ def  test_calculate_side_area():
     WHEN that radius and height is passed to this function 
     THEN the user's side area is accurately created
     """
-    assert app.calculate_side_area(180,360)== 406,944
+    assert app.calculate_side_area(180,360)== 406944
